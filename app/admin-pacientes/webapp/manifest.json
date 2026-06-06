@@ -44,9 +44,6 @@
       }
     },
     "routing": {
-      "config": {
-        "routerClass": "sap.fe.core.AppComponent"
-      },
       "routes": [
         {
           "pattern": ":?query:",
@@ -68,12 +65,7 @@
             "settings": {
               "entitySet": "Pacientes",
               "variantManagement": "None",
-              "initialLoad": true,
-              "navigationSettings": {
-                "detail": {
-                  "route": "PacientesDetail"
-                }
-              }
+              "initialLoad": true
             }
           }
         },

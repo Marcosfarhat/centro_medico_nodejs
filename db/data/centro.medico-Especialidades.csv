@@ -1,6 +1,6 @@
 ID,nombre,descripcion
-e1000,Cardiología,Enfermedades del corazón y sistema cardiovascular
-e1001,Pediatría,Atención médica para niños y adolescentes
-e1002,Clínica Médica,Medicina general para adultos
-e1003,Traumatología,Lesiones y enfermedades del sistema musculoesquelético
-e1004,Dermatología,Enfermedades de la piel
+ee000001-0000-0000-0000-000000000000,Cardiología,Enfermedades del corazón y sistema cardiovascular
+ee000002-0000-0000-0000-000000000000,Pediatría,Atención médica para niños y adolescentes
+ee000003-0000-0000-0000-000000000000,Clínica Médica,Medicina general para adultos
+ee000004-0000-0000-0000-000000000000,Traumatología,Lesiones y enfermedades del sistema musculoesquelético
+ee000005-0000-0000-0000-000000000000,Dermatología,Enfermedades de la piel

@@ -16,6 +16,7 @@ annotate AdminService.Pacientes with {
 
 // Columnas que aparecen en la lista de pacientes
 annotate AdminService.Pacientes with @(
+  Common.SemanticKey: [ID],
   UI.LineItem: [
     { Value: apellido,   Label: 'Apellido'    },
     { Value: nombre,     Label: 'Nombre'      },
