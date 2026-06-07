@@ -1,15 +1,26 @@
 {
-  "_version": "1.65.0",
+  "_version": "1.85.0",
   "sap.app": {
-    "id": "centro.medico.admin.pacientes",
+    "id": "centro.medico.admin.adminpacientes",
     "type": "application",
-    "title": "Pacientes",
-    "description": "Gestión de Pacientes - Panel Administrativo",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.25.0",
+      "toolsId": "d1a70dd7-2953-427b-a672-f85317fe4bdb"
+    },
     "dataSources": {
-      "AdminService": {
+      "mainService": {
         "uri": "/odata/v4/admin/",
         "type": "OData",
         "settings": {
+          "annotations": [],
           "odataVersion": "4.0"
         }
       }
@@ -17,33 +28,60 @@
   },
   "sap.ui": {
     "technology": "UI5",
-    "fullWidth": false
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
   },
   "sap.ui5": {
+    "flexEnabled": true,
     "dependencies": {
-      "minUI5Version": "1.120",
+      "minUI5Version": "1.148.1",
       "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
         "sap.fe.templates": {}
       }
     },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
     "models": {
-      "": {
-        "dataSource": "AdminService",
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "synchronizationMode": "None",
+          "bundleName": "centro.medico.admin.adminpacientes.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
           "operationMode": "Server",
           "autoExpandSelect": true,
           "earlyRequests": true
         }
       },
-      "i18n": {
+      "@i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
-        "settings": {
-          "bundleName": "centro.medico.admin.pacientes.i18n.i18n"
-        }
+        "uri": "i18n/i18n.properties"
       }
     },
+    "resources": {
+      "css": []
+    },
     "routing": {
+      "config": {},
       "routes": [
         {
           "pattern": ":?query:",
@@ -52,8 +90,8 @@
         },
         {
           "pattern": "Pacientes({key}):?query:",
-          "name": "PacientesDetail",
-          "target": "PacientesDetail"
+          "name": "PacientesObjectPage",
+          "target": "PacientesObjectPage"
         }
       ],
       "targets": {
@@ -63,24 +101,46 @@
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
-              "entitySet": "Pacientes",
-              "variantManagement": "None",
-              "initialLoad": true
+              "contextPath": "/Pacientes",
+              "variantManagement": "Page",
+              "navigation": {
+                "Pacientes": {
+                  "detail": {
+                    "route": "PacientesObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  }
+                }
+              }
             }
           }
         },
-        "PacientesDetail": {
+        "PacientesObjectPage": {
           "type": "Component",
-          "id": "PacientesDetail",
+          "id": "PacientesObjectPage",
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
-              "entitySet": "Pacientes",
-              "editableHeaderContent": false
+              "editableHeaderContent": false,
+              "contextPath": "/Pacientes"
             }
           }
         }
       }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  },
+  "sap.fe": {
+    "app": {
+      "enableLazyLoading": true
     }
   }
 }

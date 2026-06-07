@@ -1,25 +1,33 @@
 {
-	"name": "centro_medico_node",
-	"version": "1.0.0",
-	"dependencies": {
-		"@cap-js/hana": "^2",
-		"@sap/cds": "^9",
-		"@sap/xssec": "^4"
-	},
-	"devDependencies": {
-		"@cap-js/sqlite": "^2.4",
-		"@sap/cds-dk": "^9",
-		"@sap/dev-cap-tools": "^1.31.0"
-	},
-	"scripts": {
-		"start": "cds-serve"
-	},
-	"private": true,
-	"cds": {
-		"requires": {
-			"[production]": {
-				"auth": "xsuaa"
-			}
-		}
-	}
+  "name": "centro_medico_node",
+  "version": "1.0.0",
+  "dependencies": {
+    "@cap-js/hana": "^2",
+    "@sap/cds": "^9",
+    "@sap/xssec": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2.4",
+    "@sap/cds-dk": "^9",
+    "@sap/dev-cap-tools": "^1.31.0",
+    "cds-plugin-ui5": "^0.13.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-admin-pacientes": "cds watch --open centro.medico.admin.adminpacientes/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "[production]": {
+        "auth": "xsuaa"
+      }
+    }
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/admin-pacientes"
+  ]
 }

@@ -14,7 +14,7 @@ Una vez terminada, el usuario va a customizar los botones y la UI.
 ## Stack tecnológico
 - **Backend**: SAP CAP + Node.js
 - **Base de datos**: HANA (producción) / SQLite (desarrollo)
-- **Frontend**: SAP Fiori Elements
+- **Frontend**: SAP Fiori Elements (generado con SAP Fiori Application Generator)
 - **Autenticación**: XSUAA (producción)
 
 ## Usuario
@@ -26,14 +26,19 @@ Una vez terminada, el usuario va a customizar los botones y la UI.
 - [x] Git inicializado y repositorio en GitHub: https://github.com/Marcosfarhat/centro_medico_nodejs
 - [x] Schema reemplazado con entidades del centro médico
 - [x] Entidades creadas: Especialidades, Médicos, Pacientes, Turnos
-- [x] Datos de prueba en CSV para desarrollo local
+- [x] Datos de prueba en CSV con UUIDs válidos
 - [x] AdminService construido (CRUD completo para administrativos)
 - [x] PacienteService construido (acceso restringido para pacientes)
-- [x] Archivos del template bookshop eliminados de app/ (admin-authors, admin-books, browse, genres)
-- [x] app/services.cds y app/common.cds actualizados para el centro médico
-- [x] Servidor cds watch corre sin errores en puerto 4004
-- [ ] Resolver acceso al servidor desde el navegador en BAS (exposición de puertos pendiente)
-- [ ] Anotaciones UI Fiori para los servicios (labels, listas, formularios)
+- [x] Archivos del template bookshop eliminados de app/
+- [x] Servidor cds watch accesible desde el navegador vía BAS (Ports: Get External URL)
+- [x] Anotaciones UI Fiori para AdminService (app/admin/annotations.cds)
+- [x] App admin-pacientes generada con SAP Fiori Application Generator
+      → Lista de pacientes con navegación a detalle funcionando
+      → Generada con template "List Report Page" sobre AdminService/Pacientes
+- [ ] Probar y ajustar app admin-pacientes generada
+- [ ] Crear apps para Médicos, Turnos y Especialidades en AdminService
+- [ ] Crear app para panel de Pacientes (PacienteService)
+- [ ] Configurar SAP Fiori Launchpad para unificar todas las apps
 - [ ] Customización de UI y botones
 
 ## Estructura de entidades
@@ -46,10 +51,25 @@ Una vez terminada, el usuario va a customizar los botones y la UI.
 - **AdminService** → `/odata/v4/admin` — CRUD completo de todas las entidades
 - **PacienteService** → `/odata/v4/paciente` — Pacientes (editable), Turnos/Médicos/Especialidades (solo lectura)
 
+## Apps Fiori Elements
+- **app/admin-pacientes** → Lista + detalle de Pacientes para administrativos
+  - Generada con SAP Fiori Application Generator (List Report Page)
+  - URL: `/admin-pacientes/webapp/index.html`
+- **app/admin** → Anotaciones compartidas del AdminService
+
+## Cómo levantar el servidor
+```bash
+cd /home/user/projects/centro_medico_node
+cds watch
+```
+Luego exponer el puerto 4004 desde BAS: `Ctrl+Shift+P` → "Ports: Get External URL" → 4004
+
 ## Próximos pasos
-1. Resolver visualización en browser desde BAS (exposición de puertos)
-2. Agregar anotaciones UI Fiori para mejorar las listas y formularios
-3. Customización de UI y botones
+1. Probar la app admin-pacientes generada (lista + detalle + edición)
+2. Repetir el proceso con el generator para Médicos, Turnos y Especialidades
+3. Crear app para el panel del paciente (PacienteService)
+4. Configurar el Fiori Launchpad para unificar todo
+5. Customización de UI y botones
 
 ## Historial de sesiones
 
@@ -66,8 +86,15 @@ Una vez terminada, el usuario va a customizar los botones y la UI.
 - Se creó este archivo LEEME.md
 
 ### Sesión 3 - 06/06/2026
-- Se hizo push exitoso a GitHub (los 3 commits anteriores)
-- Se eliminaron archivos del template bookshop de app/ (admin-authors, admin-books, browse, genres)
-- Se actualizaron app/services.cds y app/common.cds
+- Se hizo push exitoso a GitHub
+- Se eliminaron archivos del template bookshop de app/
 - El servidor cds watch corre sin errores (AdminService + PacienteService + 4 CSVs de datos)
-- Pendiente: resolver exposición de puertos en BAS para ver la app en el navegador
+
+### Sesión 4 - 06/06/2026 y 07/06/2026
+- Se resolvió acceso al servidor desde el navegador en BAS (Ports: Get External URL → puerto 4004)
+- Se crearon anotaciones Fiori manualmente (app/admin/annotations.cds) — labels, listas, formularios
+- Se intentó crear app Fiori Elements manualmente → navegación fallaba por IDs no-UUID en CSVs
+- Se corrigieron todos los CSVs con UUIDs válidos
+- Se aprendió a usar el SAP Fiori Application Generator (Template Wizard en BAS)
+- Se generó app admin-pacientes correctamente con el generator oficial
+- Lección aprendida: usar siempre el generator para apps Fiori Elements, no hacerlo a mano
