@@ -97,7 +97,7 @@ Luego exponer el puerto 4004 desde BAS: `Ctrl+Shift+P` → "Ports: Get External 
 ## Próximos pasos
 1. Crear app para el panel del paciente (PacienteService)
 2. Configurar el Fiori Launchpad para unificar todo
-3. Customización de UI y botones
+3. Customización de UI y estética (próxima sesión)
 
 ## Historial de sesiones
 
@@ -136,3 +136,11 @@ Luego exponer el puerto 4004 desde BAS: `Ctrl+Shift+P` → "Ports: Get External 
 - Agregada tabla read-only de Turnos del médico vía anotación UI.ReferenceFacet → turnos/@UI.LineItem
 - Generada app admin-especialidades (lista + detalle, sin navigation entity)
 - Próxima sesión: generar admin-turnos y luego el panel de pacientes
+
+### Sesión 6 - 12/06/2026
+- Se creó app admin-turnos manualmente (sin wizard), aprendiendo cada archivo y su rol
+- Se intentó @odata.draft.enabled en Turnos → conflicto con Pacientes (Composition owner)
+- Solución: Turnos sin draft propio; se editan desde el Object Page de Pacientes
+- Se agregó sección "Turnos" en el Object Page de Pacientes (Target: 'turnos/@UI.LineItem')
+  → botones New/Edit/Delete funcionando gracias a la Composition + draft de Pacientes
+- Próxima sesión: cambios de estética y UI (labels, colores, columnas, etc.)
