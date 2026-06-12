@@ -15,6 +15,7 @@ service AdminService {
   // CRUD completo de especialidades
   entity Especialidades as projection on cm.Especialidades;
 
-  // CRUD completo de turnos
+  // CRUD completo de turnos — draft habilitado para edición en Fiori Elements
+  @odata.draft.enabled
   entity Turnos         as projection on cm.Turnos;
 }

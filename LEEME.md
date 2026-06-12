@@ -43,7 +43,9 @@ Una vez terminada, el usuario va a customizar los botones y la UI.
 - [x] App admin-especialidades generada con SAP Fiori Application Generator
       → Lista y detalle de Especialidades funcionando
       → Sin navigation entity (entidad simple)
-- [ ] Crear app admin-turnos para gestión completa de turnos (AdminService)
+- [x] App admin-turnos creada manualmente (List Report Page sobre AdminService/Turnos)
+      → Lista y detalle de Turnos funcionando
+      → @odata.draft.enabled en AdminService.Turnos (Edit / Save / Cancel / Delete / New)
 - [ ] Crear app para panel de Pacientes (PacienteService)
 - [ ] Configurar SAP Fiori Launchpad para unificar todas las apps
 - [ ] Customización de UI y botones
@@ -71,6 +73,10 @@ Una vez terminada, el usuario va a customizar los botones y la UI.
 - **app/admin-especialidades** → Lista + detalle de Especialidades para administrativos
   - Generada con SAP Fiori Application Generator (List Report Page)
   - URL: `/admin-especialidades/webapp/index.html`
+- **app/admin-turnos** → Lista + detalle de Turnos para administrativos
+  - Creada manualmente siguiendo el patrón del generator
+  - URL: `/centro.medico.admin.adminturnos/index.html`
+  - Draft habilitado: New / Edit / Save / Cancel / Delete
 - **app/admin** → Anotaciones compartidas del AdminService
 
 ## Decisión de arquitectura: Turnos en Médicos
@@ -89,10 +95,9 @@ cds watch
 Luego exponer el puerto 4004 desde BAS: `Ctrl+Shift+P` → "Ports: Get External URL" → 4004
 
 ## Próximos pasos
-1. Generar app admin-turnos con el generator (AdminService / Turnos, navigation entity: ninguna)
-2. Crear app para el panel del paciente (PacienteService)
-3. Configurar el Fiori Launchpad para unificar todo
-4. Customización de UI y botones
+1. Crear app para el panel del paciente (PacienteService)
+2. Configurar el Fiori Launchpad para unificar todo
+3. Customización de UI y botones
 
 ## Historial de sesiones
 
