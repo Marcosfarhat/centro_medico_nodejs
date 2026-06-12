@@ -44,6 +44,11 @@ annotate AdminService.Pacientes with @(
       $Type:  'UI.ReferenceFacet',
       Label:  'Obra Social',
       Target: '@UI.FieldGroup#ObraSocial'
+    },
+    {
+      $Type:  'UI.ReferenceFacet',
+      Label:  'Turnos',
+      Target: 'turnos/@UI.LineItem'
     }
   ],
 
