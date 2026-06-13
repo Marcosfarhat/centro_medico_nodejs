@@ -34,7 +34,8 @@
           "bob": {
             "password": "paciente123",
             "roles": ["paciente"]
-          }
+          },
+          "*": true
         }
       }
     }
