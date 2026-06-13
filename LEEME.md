@@ -45,15 +45,23 @@ Una vez terminada, el usuario va a customizar los botones y la UI.
       → Sin navigation entity (entidad simple)
 - [x] App admin-turnos creada manualmente (List Report Page sobre AdminService/Turnos)
       → Lista y detalle de Turnos funcionando
-      → @odata.draft.enabled en AdminService.Turnos (Edit / Save / Cancel / Delete / New)
 - [x] App mis-turnos creada (portal del paciente - lista de turnos, solo lectura)
       → URL: /centro.medico.paciente.misturnos/index.html
 - [x] App mi-perfil creada (portal del paciente - datos personales)
       → URL: /centro.medico.paciente.miperfil/index.html
-- [x] Fiori Launchpad creado con tiles para todas las apps
-      → URL: /centro.medico.launchpad/index.html
+- [x] Launchpad creado como archivo estático en app/launchpad.html
+      → URL: /launchpad.html
       → Panel Administrativo: Pacientes, Médicos, Especialidades, Agenda
       → Portal del Paciente: Mis Turnos, Mi Perfil
+- [x] Autenticación por roles configurada
+      → @requires: 'admin' en AdminService
+      → @requires: 'paciente' en PacienteService
+      → xs-security.json con scopes y role-collections para XSUAA (producción)
+      → En desarrollo: mocked auth sin usuarios (acceso libre)
+      → PENDIENTE: limpiar credenciales cacheadas de bob en el browser antes de probar
+- [x] Value Help para Paciente y Médico en formulario de Turnos
+      → Dropdown con nombre/apellido en lugar de UUID
+- [x] Colores por estado de turno (verde/naranja/rojo) y dropdown de EstadoTurno
 - [ ] Customización de UI y estética
 
 ## Estructura de entidades
