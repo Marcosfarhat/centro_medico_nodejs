@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centro Médico</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "72", "72full", Arial, Helvetica, sans-serif;
+      background: #f5f6f7;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: #0064d9;
+      color: white;
+      padding: 0 2rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    header h1 {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── Contenido principal ── */
+    main {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ── Grupo de tiles ── */
+    .group {
+      margin-bottom: 2.5rem;
+    }
+    .group-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #556b82;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e5e5e5;
+    }
+    .tiles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* ── Tile ── */
+    .tile {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 11rem;
+      height: 11rem;
+      background: white;
+      border-radius: 0.5rem;
+      padding: 1.25rem;
+      text-decoration: none;
+      color: #32363a;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      transition: box-shadow 0.15s, transform 0.15s;
+      cursor: pointer;
+    }
+    .tile:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transform: translateY(-2px);
+    }
+    .tile-icon {
+      font-size: 2rem;
+    }
+    .tile-info {
+      margin-top: auto;
+    }
+    .tile-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #32363a;
+    }
+    .tile-subtitle {
+      font-size: 0.75rem;
+      color: #6a6d70;
+      margin-top: 0.2rem;
+    }
+
+    /* ── Colores por grupo ── */
+    .tile.admin   { border-top: 3px solid #0064d9; }
+    .tile.paciente { border-top: 3px solid #188918; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <span style="font-size:1.25rem">🏥</span>
+    <h1>Centro Médico</h1>
+  </header>
+
+  <main>
+
+    <!-- Panel Administrativo -->
+    <section class="group">
+      <div class="group-title">Panel Administrativo</div>
+      <div class="tiles">
+
+        <a class="tile admin" href="/centro.medico.admin.adminpacientes/index.html">
+          <div class="tile-icon">👥</div>
+          <div class="tile-info">
+            <div class="tile-title">Pacientes</div>
+            <div class="tile-subtitle">Gestión de pacientes</div>
+          </div>
+        </a>
+
+        <a class="tile admin" href="/centro.medico.admin.adminmedicos/index.html">
+          <div class="tile-icon">🩺</div>
+          <div class="tile-info">
+            <div class="tile-title">Médicos</div>
+            <div class="tile-subtitle">Gestión de médicos</div>
+          </div>
+        </a>
+
+        <a class="tile admin" href="/centro.medico.admin.adminespecialidades/index.html">
+          <div class="tile-icon">🏷️</div>
+          <div class="tile-info">
+            <div class="tile-title">Especialidades</div>
+            <div class="tile-subtitle">Gestión de especialidades</div>
+          </div>
+        </a>
+
+        <a class="tile admin" href="/centro.medico.admin.adminturnos/index.html">
+          <div class="tile-icon">📅</div>
+          <div class="tile-info">
+            <div class="tile-title">Agenda</div>
+            <div class="tile-subtitle">Gestión de turnos</div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Portal del Paciente -->
+    <section class="group">
+      <div class="group-title">Portal del Paciente</div>
+      <div class="tiles">
+
+        <a class="tile paciente" href="/centro.medico.paciente.misturnos/index.html">
+          <div class="tile-icon">🗓️</div>
+          <div class="tile-info">
+            <div class="tile-title">Mis Turnos</div>
+            <div class="tile-subtitle">Consulta de turnos</div>
+          </div>
+        </a>
+
+        <a class="tile paciente" href="/centro.medico.paciente.miperfil/index.html">
+          <div class="tile-icon">👤</div>
+          <div class="tile-info">
+            <div class="tile-title">Mi Perfil</div>
+            <div class="tile-subtitle">Mis datos personales</div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
