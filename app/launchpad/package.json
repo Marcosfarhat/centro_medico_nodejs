@@ -1,0 +1,8 @@
+{
+  "name": "launchpad",
+  "version": "0.0.1",
+  "description": "Pantalla de inicio - Centro Médico",
+  "main": "webapp/index.html",
+  "dependencies": {},
+  "devDependencies": {}
+}
