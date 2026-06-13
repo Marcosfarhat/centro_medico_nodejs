@@ -1,0 +1,11 @@
+{
+  "_version": "1.85.0",
+  "sap.app": {
+    "id": "centro.medico.launchpad",
+    "type": "application",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "Centro Médico - Inicio"
+  }
+}
