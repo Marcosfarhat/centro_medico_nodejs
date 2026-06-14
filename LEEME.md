@@ -57,8 +57,9 @@ Una vez terminada, el usuario va a customizar los botones y la UI.
       → @requires: 'admin' en AdminService
       → @requires: 'paciente' en PacienteService
       → xs-security.json con scopes y role-collections para XSUAA (producción)
-      → En desarrollo: mocked auth sin usuarios (acceso libre)
-      → PENDIENTE: limpiar credenciales cacheadas de bob en el browser antes de probar
+      → En desarrollo: mocked auth con usuario 'dev' (admin + paciente)
+      → server.js inyecta credenciales automáticamente → sin popup de login en BAS
+      → Acceso: usar Ctrl+Click sobre localhost:4004 en el terminal de BAS (no copiar External URL)
 - [x] Value Help para Paciente y Médico en formulario de Turnos
       → Dropdown con nombre/apellido en lugar de UUID
 - [x] Colores por estado de turno (verde/naranja/rojo) y dropdown de EstadoTurno
@@ -156,6 +157,17 @@ Luego exponer el puerto 4004 desde BAS: `Ctrl+Shift+P` → "Ports: Get External 
 - Se agregó sección "Turnos" en el Object Page de Pacientes (Target: 'turnos/@UI.LineItem')
   → botones New/Edit/Delete funcionando gracias a la Composition + draft de Pacientes
 - Próxima sesión: cambios de estética y UI (labels, colores, columnas, etc.)
+
+### Sesión 8 - 14/06/2026
+- Diagnóstico y fix del problema de autenticación en desarrollo
+- Problema: mocked auth sin usuarios → OData devolvía 401 → Fiori mostraba "Cannot login w/o session"
+- Causa raíz: el "Cannot login w/o session" era del proxy de BAS (sesión expirada), no de CAP
+- Fix 1 (package.json): usuario 'dev' con roles admin + paciente
+- Fix 2 (server.js): middleware que inyecta credenciales dev automáticamente en modo mocked
+  → En dev: requests sin auth header reciben Basic dev:dev antes de llegar al auth de CAP
+  → En producción: kind es 'xsuaa', el middleware no se activa
+- Acceso correcto en BAS: Ctrl+Click en localhost:4004 del terminal (no External URL directo)
+- Resultado: los 6 tiles del launchpad y todas las apps funcionando correctamente
 
 ### Sesión 7 - 13/06/2026
 - Value Help para Paciente y Médico en formulario de Turnos (@Common.ValueList)

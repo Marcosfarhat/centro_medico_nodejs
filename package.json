@@ -25,7 +25,13 @@
         "auth": "xsuaa"
       },
       "auth": {
-        "kind": "mocked"
+        "kind": "mocked",
+        "users": {
+          "dev": {
+            "password": "dev",
+            "roles": ["admin", "paciente"]
+          }
+        }
       }
     }
   },
