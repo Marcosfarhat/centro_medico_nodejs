@@ -11,6 +11,23 @@ build-parameters:
         - npm ci
         - npx cds build --production
 modules:
+  - name: centro_medico_node-approuter
+    type: approuter.nodejs
+    path: approuter
+    parameters:
+      keep-existing-routes: true
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: centro_medico_node-auth
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api
+          url: ~{srv-url}
+          timeout: 600000
+          forwardAuthToken: true
+
   - name: centro_medico_node-srv
     type: nodejs
     path: gen/srv
@@ -50,10 +67,14 @@ resources:
             - "binding-secret"
             - "x509"
         role-collections:
-          - name: 'admin (centro_medico_node ${org}-${space})'
-            description: 'generated'
+          - name: 'CentroMedico_Admin'
+            description: 'Administradores del centro médico'
             role-template-references:
               - '$XSAPPNAME.admin'
+          - name: 'CentroMedico_Paciente'
+            description: 'Pacientes del centro médico'
+            role-template-references:
+              - '$XSAPPNAME.paciente'
   - name: centro_medico_node-db
     type: com.sap.xs.hdi-container
     parameters:
