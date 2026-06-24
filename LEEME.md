@@ -67,9 +67,9 @@ Una vez terminada, el usuario va a customizar los botones y la UI.
       → @restrict: cada paciente ve solo su propio perfil y sus propios turnos
       → $user en la condición where se reemplaza con el email del usuario logueado
       → En dev: server.js inyecta credenciales por ruta (admin → /odata/v4/admin, paciente test → /odata/v4/paciente)
-- [ ] Customización de UI con componentes UI5 (ui5.sap.com)
+- [~] Customización de UI con componentes UI5 (ui5.sap.com)
       → Plan: usar extensiones de Fiori Elements para agregar controles UI5 custom
-      → Primer objetivo: sap.m.Button + sap.m.MessageToast en admin-turnos
+      → sap.m.Button + sap.m.MessageToast en admin-turnos: implementado (ver sesión 11)
       → Otros controles identificados: SegmentedButton (filtro estado), ObjectStatus, Avatar, MessageBox
 
 ## Estructura de entidades
@@ -241,3 +241,12 @@ Cambiar por el email y password del paciente que se quiere probar.
 - Fiori Launchpad con tiles para todas las apps (HTML/CSS puro)
 - Fix: manifest.json requerido por cds-plugin-ui5 en el launchpad
 - Funcionalidad completa — próxima etapa: estética y customización
+
+### Sesión 11 - 24/06/2026
+- Proyecto importado a un nuevo entorno (clonado de GitHub) y verificado de punta a punta: servidor, login mockeado, lectura y creación de Turnos vía el flujo de draft de Pacientes
+- Implementado el primer control UI5 planificado: botón "Confirmar Turno" (sap.m.Button) + sap.m.MessageToast en el Object Page de admin-turnos
+  → Archivo nuevo: app/admin-turnos/webapp/ext/controller/ObjectPageExt.controller.js (ControllerExtension con método onConfirmarTurno)
+  → manifest.json: registrado en sap.ui5.extends.extensions.sap.ui.controllerExtensions + botón en content.header.actions
+- Hallazgo importante: se intentó que el botón también guarde el cambio de estado directo sobre Turnos (PATCH), pero CAP v8+ bloquea con `DRAFT_MODIFICATION_ONLY_VIA_ROOT` — ninguna entidad hija de una composition con draft (Turnos es hijo de Pacientes) puede modificarse directo, ni con @odata.draft.bypass ni con cds.fiori.direct_crud. Esas opciones solo aplican a la entidad raíz. Confirma y refuerza la decisión de arquitectura ya tomada en sesión 5 (Medicos.turnos como Association, no Composition)
+- Por ahora el botón solo muestra el toast con datos reales del turno (no persiste el cambio) — guardar el estado real requeriría disparar el flujo de draft de Pacientes (draftEdit → modificar el turno hijo → draftActivate) desde el controller extension
+- Próxima sesión: decidir si se implementa la persistencia real del botón (vía draft de Pacientes) o se sigue con el próximo control de la lista (sap.m.SegmentedButton)

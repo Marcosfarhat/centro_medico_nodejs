@@ -127,8 +127,27 @@
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Turnos"
+              "contextPath": "/Turnos",
+              "content": {
+                "header": {
+                  "actions": {
+                    "ConfirmarTurno": {
+                      "press": "centro.medico.admin.adminturnos.ext.controller.ObjectPageExt.onConfirmarTurno",
+                      "text": "Confirmar Turno"
+                    }
+                  }
+                }
+              }
             }
+          }
+        }
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ObjectPage.ObjectPageController": {
+            "controllerName": "centro.medico.admin.adminturnos.ext.controller.ObjectPageExt"
           }
         }
       }
