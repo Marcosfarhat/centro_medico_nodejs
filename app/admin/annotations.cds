@@ -17,6 +17,9 @@ annotate AdminService.Pacientes with {
 // Columnas que aparecen en la lista de pacientes
 annotate AdminService.Pacientes with @(
   Common.SemanticKey: [ID],
+  // Le dice al framework que esta entidad representa una persona física:
+  // el Avatar del header se dibuja redondo en vez de cuadrado.
+  Common.IsNaturalPerson: true,
   UI.LineItem: [
     { Value: apellido,   Label: 'Apellido'    },
     { Value: nombre,     Label: 'Nombre'      },
@@ -30,7 +33,10 @@ annotate AdminService.Pacientes with @(
     TypeName:       'Paciente',
     TypeNamePlural: 'Pacientes',
     Title:       { Value: apellido },
-    Description: { Value: nombre   }
+    Description: { Value: nombre   },
+    // Sin foto real (ImageUrl) cargada, Fiori Elements usa este ícono
+    // genérico como Avatar al lado del título.
+    TypeImageUrl: 'sap-icon://person-placeholder'
   },
 
   // Secciones del formulario de detalle
@@ -239,7 +245,7 @@ annotate AdminService.Turnos with @(
       { Value: medico_ID    },
       { Value: fecha        },
       { Value: hora         },
-      { Value: estado       },
+      { Value: estado, Criticality: estadoCriticality },
       { Value: motivo       },
       { Value: observaciones}
     ]
