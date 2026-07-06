@@ -16,6 +16,9 @@ service AdminService {
   // CRUD completo de especialidades
   entity Especialidades as projection on cm.Especialidades;
 
+  // Catálogo de obras sociales — solo lectura para el selector en Pacientes
+  entity ObraSocial     as projection on cm.ObraSocial;
+
   // CRUD completo de turnos — sin draft propio (Turnos pertenece a la composition de Pacientes).
   // @UI.CreateHidden oculta el botón "Crear" estándar de Fiori Elements (no puede funcionar,
   // un turno no se inserta directo — ver botón custom "Crear Turno" en admin-turnos) sin tocar

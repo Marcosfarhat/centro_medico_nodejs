@@ -86,7 +86,7 @@
           "options": {
             "settings": {
               "contextPath": "/Turnos",
-              "variantManagement": "Page",
+              "variantManagement": "None",
               "navigation": {
                 "Turnos": {
                   "detail": {
@@ -111,8 +111,27 @@
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Turnos"
+              "contextPath": "/Turnos",
+              "content": {
+                "header": {
+                  "actions": {
+                    "VolverInicio": {
+                      "press": ".extension.centro.medico.paciente.misturnos.ext.controller.ObjectPageExt.onVolverInicio",
+                      "text": "Volver al inicio"
+                    }
+                  }
+                }
+              }
             }
+          }
+        }
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ObjectPage.ObjectPageController": {
+            "controllerName": "centro.medico.paciente.misturnos.ext.controller.ObjectPageExt"
           }
         }
       }

@@ -139,6 +139,16 @@
                     "route": "TurnosObjectPage"
                   }
                 }
+              },
+              "content": {
+                "header": {
+                  "actions": {
+                    "VolverInicio": {
+                      "press": ".extension.centro.medico.admin.adminmedicos.ext.controller.ObjectPageExt.onVolverInicio",
+                      "text": "Volver al inicio"
+                    }
+                  }
+                }
               }
             }
           }
@@ -150,8 +160,27 @@
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Medicos/turnos"
+              "contextPath": "/Medicos/turnos",
+              "content": {
+                "header": {
+                  "actions": {
+                    "VolverInicio": {
+                      "press": ".extension.centro.medico.admin.adminmedicos.ext.controller.ObjectPageExt.onVolverInicio",
+                      "text": "Volver al inicio"
+                    }
+                  }
+                }
+              }
             }
+          }
+        }
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ObjectPage.ObjectPageController": {
+            "controllerName": "centro.medico.admin.adminmedicos.ext.controller.ObjectPageExt"
           }
         }
       }

@@ -12,6 +12,17 @@ annotate AdminService.Pacientes with {
   email           @title: 'Email';
   obraSocial      @title: 'Obra Social';
   numeroAfiliado  @title: 'Nro. Afiliado';
+
+  obraSocial @(
+    Common.ValueListWithFixedValues,
+    Common.ValueList: {
+      CollectionPath: 'ObraSocial',
+      Parameters: [
+        { $Type: 'Common.ValueListParameterOut',         LocalDataProperty: obraSocial, ValueListProperty: 'nombre' },
+        { $Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'codigo'  }
+      ]
+    }
+  );
 }
 
 // Columnas que aparecen en la lista de pacientes
@@ -75,7 +86,7 @@ annotate AdminService.Pacientes with @(
   UI.FieldGroup#ObraSocial: {
     Label: 'Obra Social',
     Data: [
-      { Value: obraSocial     },
+      { Value: obraSocial },
       { Value: numeroAfiliado }
     ]
   }
@@ -214,10 +225,11 @@ annotate AdminService.Turnos with {
 annotate AdminService.Turnos with @(
   UI.SelectionFields: [ estado ],
   UI.LineItem: [
-    { Value: fecha,             Label: 'Fecha'    },
-    { Value: hora,              Label: 'Hora'     },
-    { Value: paciente.apellido, Label: 'Paciente' },
-    { Value: medico.apellido,   Label: 'Médico'   },
+    { Value: fecha,                      Label: 'Fecha'        },
+    { Value: hora,                       Label: 'Hora'         },
+    { Value: paciente.apellido,          Label: 'Paciente'     },
+    { Value: medico.apellido,            Label: 'Médico'       },
+    { Value: medico.especialidad.nombre, Label: 'Especialidad' },
     {
       Value:       estado,
       Label:       'Estado',
@@ -244,7 +256,8 @@ annotate AdminService.Turnos with @(
     Label: 'Detalle del Turno',
     Data: [
       { Value: paciente_ID  },
-      { Value: medico_ID    },
+      { Value: medico_ID                                                  },
+      { Value: medico.especialidad.nombre, Label: 'Especialidad'         },
       { Value: fecha        },
       { Value: hora         },
       { Value: estado, Criticality: estadoCriticality },

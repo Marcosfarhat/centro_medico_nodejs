@@ -86,7 +86,7 @@
           "options": {
             "settings": {
               "contextPath": "/Pacientes",
-              "variantManagement": "Page",
+              "variantManagement": "None",
               "navigation": {
                 "Pacientes": {
                   "detail": {
@@ -111,8 +111,27 @@
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Pacientes"
+              "contextPath": "/Pacientes",
+              "content": {
+                "header": {
+                  "actions": {
+                    "VolverInicio": {
+                      "press": ".extension.centro.medico.paciente.miperfil.ext.controller.ObjectPageExt.onVolverInicio",
+                      "text": "Volver al inicio"
+                    }
+                  }
+                }
+              }
             }
+          }
+        }
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ObjectPage.ObjectPageController": {
+            "controllerName": "centro.medico.paciente.miperfil.ext.controller.ObjectPageExt"
           }
         }
       }

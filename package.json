@@ -31,6 +31,10 @@
             "password": "admin",
             "roles": ["admin"]
           },
+          "marcosfarhat@gmail.com": {
+            "password": "pass5",
+            "roles": ["paciente"]
+          },
           "juan.garcia@email.com": {
             "password": "pass1",
             "roles": ["paciente"]

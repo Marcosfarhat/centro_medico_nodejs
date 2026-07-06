@@ -22,6 +22,11 @@ entity Medicos : cuid, managed {
   turnos       : Association to many Turnos on turnos.medico = $self;
 }
 
+entity ObraSocial : cuid {
+  nombre : String(100) @mandatory;
+  codigo : String(20);
+}
+
 entity Pacientes : cuid, managed {
   nombre          : String(100) @mandatory;
   apellido        : String(100) @mandatory;

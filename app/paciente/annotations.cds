@@ -3,15 +3,30 @@ using PacienteService from '../../srv/paciente-service';
 // ─── TURNOS (vista del paciente) ──────────────────────────────────────────────
 
 annotate PacienteService.Turnos with {
-  fecha         @title: 'Fecha';
-  hora          @title: 'Hora';
-  estado        @title: 'Estado';
-  motivo        @title: 'Motivo';
-  observaciones @title: 'Observaciones';
-  medico        @title: 'Médico';
+  fecha             @title: 'Fecha';
+  hora              @title: 'Hora';
+  estado            @title: 'Estado'
+                    @Common.ValueListWithFixedValues;
+  motivo            @title: 'Motivo';
+  observaciones     @title: 'Observaciones';
+  medico            @title: 'Médico'
+                    @Common.Text: medico.apellido
+                    @Common.TextArrangement: #TextOnly;
+
+  // Campos técnicos — ocultos completamente de la UI del paciente
+  ID                @UI.Hidden;
+  paciente          @UI.Hidden;
+  createdAt         @UI.Hidden;
+  createdBy         @UI.Hidden;
+  modifiedAt        @UI.Hidden;
+  modifiedBy        @UI.Hidden;
+  estadoCriticality @UI.Hidden;
 }
 
 annotate PacienteService.Turnos with @(
+
+  // Campos visibles en el filter bar del List Report
+  UI.SelectionFields: [ fecha, estado ],
 
   // Columnas que ve el paciente en su lista de turnos
   UI.LineItem: [
@@ -45,13 +60,13 @@ annotate PacienteService.Turnos with @(
   UI.FieldGroup#DetalleTurno: {
     Label: 'Detalle del Turno',
     Data: [
-      { Value: fecha                      },
-      { Value: hora                       },
-      { Value: medico.apellido            },
-      { Value: medico.especialidad.nombre },
-      { Value: estado                     },
-      { Value: motivo                     },
-      { Value: observaciones              }
+      { Value: fecha                                              },
+      { Value: hora                                               },
+      { Value: medico.apellido,            Label: 'Médico'       },
+      { Value: medico.especialidad.nombre, Label: 'Especialidad' },
+      { Value: estado                                             },
+      { Value: motivo                                             },
+      { Value: observaciones                                      }
     ]
   }
 );
@@ -67,6 +82,14 @@ annotate PacienteService.Pacientes with {
   email           @title: 'Email';
   obraSocial      @title: 'Obra Social';
   numeroAfiliado  @title: 'Nro. Afiliado';
+
+  // Campos técnicos — ocultos de la UI del paciente
+  ID         @UI.Hidden;
+  turnos     @UI.Hidden;
+  createdAt  @UI.Hidden;
+  createdBy  @UI.Hidden;
+  modifiedAt @UI.Hidden;
+  modifiedBy @UI.Hidden;
 }
 
 annotate PacienteService.Pacientes with @(

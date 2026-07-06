@@ -9,7 +9,14 @@ service PacienteService {
 
   // Solo los turnos del paciente logueado (filtra por el email del paciente del turno)
   @restrict: [{ grant: 'READ', where: 'paciente.email = $user' }]
-  entity Turnos         as projection on cm.Turnos;
+  entity Turnos as projection on cm.Turnos {
+    *,
+    case estado
+      when 'confirmado' then 3
+      when 'cancelado'  then 1
+      else                   2
+    end as estadoCriticality : Integer
+  };
 
   // Médicos y especialidades los pueden ver todos los pacientes
   @readonly entity Medicos        as projection on cm.Medicos;

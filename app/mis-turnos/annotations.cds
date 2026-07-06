@@ -1,1 +1,1 @@
-using PacienteService as service from '../../srv/paciente-service';
+using PacienteService from '../../srv/paciente-service';
